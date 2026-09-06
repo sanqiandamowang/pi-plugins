@@ -34,24 +34,24 @@ plugins:
 
   - name: "npm:@narumitw/pi-plan-mode"
     category: "交互与体验"
-    enabled: false   # 默认不装,需要 Codex 风格只读协作模式时开启
+    enabled: false # 默认不装,需要 Codex 风格只读协作模式时开启
     desc: "Codex 风格只读 /plan 协作模式"
 
   - name: "npm:@narumitw/pi-btw"
     category: "交互与体验"
-    enabled: false   # 旁路提问命令,按需开启
+    enabled: false # 旁路提问命令,按需开启
     desc: "/btw 旁路提问命令,不打断主流程"
 
   - name: "npm:pi-powerline-footer"
     category: "交互与体验"
-    enabled: false   # 状态栏美化,按需开启
+    enabled: false # 状态栏美化,按需开启
     desc: "Powerline 风格状态栏"
 
   # ── 🛡️ 安全与代码质量 ────────────────────────────
   - name: "npm:pi-lens"
     category: "安全与代码质量"
-    enabled: false   # 启动开销较大(~3s LSP 探测),需要时再开启
-    desc: 
+    enabled: false # 启动开销较大(~3s LSP 探测),需要时再开启
+    desc: "实时 LSP / linter / formatter / 类型检查反馈"
 
   # ── 🌐 集成与扩展 ────────────────────────────────
   - name: "npm:@tian.zuo/pi-antigravity"
@@ -61,10 +61,10 @@ plugins:
 
   - name: "npm:pi-web-ui"
     category: "集成与扩展"
-    enabled: false   # 需要 Web 聊天界面时开启
+    enabled: false # 需要 Web 聊天界面时开启
     desc: "一键启动 Web 聊天界面,支持 Docker/systemd 部署"
 
   - name: "npm:pi-markdown-preview"
     category: "集成与扩展"
-    enabled: false   # 渲染:`` Markdown + LaTeX,按需开启
+    enabled: false # 渲染:`` Markdown + LaTeX,按需开启
     desc: "渲染 Markdown + LaTeX,支持终端/浏览器/PDF 输出"
