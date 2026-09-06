@@ -1,0 +1,70 @@
+# Pi Agent 插件配置清单
+# 与 pi-agent插件推荐清单.md 同步维护
+# enabled: true 表示需要安装并保留;false 表示应卸载(若已装)
+# 脚本:python3 sync_plugins.py
+# 当前状态:反映本机实际已安装的 8 个包
+
+plugins:
+  # ── 🔧 核心能力增强 ──────────────────────────────
+  - name: "npm:pi-subagents"
+    category: "核心能力增强"
+    enabled: true
+    desc: "单代理委派 + 脚本化多代理工作流,支持并行子任务"
+
+  - name: "npm:pi-web-access"
+    category: "核心能力增强"
+    enabled: true
+    desc: "网页搜索、URL 抓取、GitHub 克隆、PDF/YouTube/视频分析"
+
+  - name: "npm:pi-background-tasks"
+    category: "核心能力增强"
+    enabled: true
+    desc: "持久后台 shell 任务、只读委派代理"
+
+  # ── 👀 交互与体验 ────────────────────────────────
+  - name: "npm:@juicesharp/rpiv-todo"
+    category: "交互与体验"
+    enabled: true
+    desc: "实时待办清单浮层,跨 /reload 和压缩持久化"
+
+  - name: "npm:@juicesharp/rpiv-ask-user-question"
+    category: "交互与体验"
+    enabled: true
+    desc: "结构化提问,用选项代替自由文本回复"
+
+  - name: "npm:@narumitw/pi-plan-mode"
+    category: "交互与体验"
+    enabled: false   # 默认不装,需要 Codex 风格只读协作模式时开启
+    desc: "Codex 风格只读 /plan 协作模式"
+
+  - name: "npm:@narumitw/pi-btw"
+    category: "交互与体验"
+    enabled: false   # 旁路提问命令,按需开启
+    desc: "/btw 旁路提问命令,不打断主流程"
+
+  - name: "npm:pi-powerline-footer"
+    category: "交互与体验"
+    enabled: false   # 状态栏美化,按需开启
+    desc: "Powerline 风格状态栏"
+
+  # ── 🛡️ 安全与代码质量 ────────────────────────────
+  - name: "npm:pi-lens"
+    category: "安全与代码质量"
+    enabled: true
+    desc: "实时 LSP / linter / formatter / 类型检查反馈"
+
+  # ── 🌐 集成与扩展 ────────────────────────────────
+  - name: "npm:@tian.zuo/pi-antigravity"
+    category: "集成与扩展"
+    enabled: true
+    desc: "接入 Google Antigravity (agy) 模型,Gemini 通过 stream-json RPC"
+
+  - name: "npm:pi-web-ui"
+    category: "集成与扩展"
+    enabled: false   # 需要 Web 聊天界面时开启
+    desc: "一键启动 Web 聊天界面,支持 Docker/systemd 部署"
+
+  - name: "npm:pi-markdown-preview"
+    category: "集成与扩展"
+    enabled: false   # 渲染:`` Markdown + LaTeX,按需开启
+    desc: "渲染 Markdown + LaTeX,支持终端/浏览器/PDF 输出"
