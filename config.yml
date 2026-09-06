@@ -2,7 +2,7 @@
 # 与 pi-agent插件推荐清单.md 同步维护
 # enabled: true 表示需要安装并保留;false 表示应卸载(若已装)
 # 脚本:python3 sync_plugins.py
-# 当前状态:反映本机实际已安装的 8 个包
+# 当前状态:反映本机实际已安装的 6 个包
 
 plugins:
   # ── 🔧 核心能力增强 ──────────────────────────────
@@ -50,8 +50,8 @@ plugins:
   # ── 🛡️ 安全与代码质量 ────────────────────────────
   - name: "npm:pi-lens"
     category: "安全与代码质量"
-    enabled: true
-    desc: "实时 LSP / linter / formatter / 类型检查反馈"
+    enabled: false   # 启动开销较大(~3s LSP 探测),需要时再开启
+    desc: 
 
   # ── 🌐 集成与扩展 ────────────────────────────────
   - name: "npm:@tian.zuo/pi-antigravity"
