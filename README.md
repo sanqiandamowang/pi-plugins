@@ -5,7 +5,7 @@
 ## 文件说明
 
 | 文件 | 作用 |
-|------|------|
+| ------ | ------ |
 | `pi-agent插件推荐清单.md` | 插件调研清单(下载量、说明、分类),供挑选参考 |
 | `config.yml` | 插件期望状态声明(enabled 控制是否安装) |
 | `sync_plugins.py` | 同步脚本:对比 config 与 `pi list` 实际状态,执行安装/卸载 |
@@ -36,7 +36,7 @@ python3 sync_plugins.py --yes
 ## 命令选项
 
 | 命令 | 说明 |
-|------|------|
+| ------ | ------ |
 | `python3 sync_plugins.py` | 同步 config 声明的插件,安装缺失、卸载多余 |
 | `python3 sync_plugins.py --dry-run` | 仅打印将执行的动作,不实际执行 |
 | `python3 sync_plugins.py --yes` / `-y` | 跳过所有确认提示 |
@@ -67,32 +67,16 @@ plugins:
 | ✅ 启用(7) | pi-subagents、pi-web-access、pi-background-tasks、@juicesharp/rpiv-todo、@juicesharp/rpiv-ask-user-question、pi-lens、@tian.zuo/pi-antigravity |
 | ⬜ 关闭(5) | @narumitw/pi-plan-mode、@narumitw/pi-btw、pi-powerline-footer、pi-web-ui、pi-markdown-preview |
 
-**本机实际安装(8 个)**
+**本机实际安装(7 个)**:与上方启用项完全一致(已清理重复的旧版 `pi-antigravity`)。
 
-上述 7 个启用项均已安装,另多出一个未声明的旧版:
-
-| 包名 | 说明 |
-|------|------|
-| ⚠️ `npm:pi-antigravity` | 旧版 Antigravity provider,已被 `@tian.zuo/pi-antigravity` 取代,待清理 |
-
-清理命令(二选一):
-
-```bash
-# 方式一:直接卸载
-pi remove npm:pi-antigravity
-
-# 方式二:用脚本连未声明包一并卸载
-python3 sync_plugins.py --purge --yes
-```
-
-> ℹ️ 清理后,`python3 sync_plugins.py --dry-run` 应显示「无需操作,已与 config.yml 一致」。若日后想换回旧版,把 `@tian.zuo/pi-antigravity` 的 `enabled` 改 `false`,再加回 `pi-antigravity` 并设 `true`。
+> ℹ️ `pi-antigravity`(旧版)已卸载,统一用 `@tian.zuo/pi-antigravity`。若日后想换回,把后者 `enabled` 改 `false`,再加回前者并设 `true`。
 
 ## 同步规则
 
 脚本对比 **config.yml 声明** 与 **`pi list` 实际安装**,按下表处理:
 
 | 情况 | 行为 |
-|------|------|
+| ------ | ------ |
 | `enabled: true` 且未安装 | 执行 `pi install` |
 | `enabled: false` 且已安装 | 执行 `pi remove` |
 | 未在 config 声明但已安装 | 默认保留并打印警告;加 `--purge` 才卸载 |
@@ -128,7 +112,7 @@ pi-plugins/
 ## 故障排查
 
 | 问题 | 解决 |
-|------|------|
+| ------ | ------ |
 | `未找到 pi 命令` | 未安装 pi,参考 [pi 官方文档](https://pi.dev) |
 | `缺少 PyYAML` | `pip install pyyaml` |
 | `pi install 失败` | 多为网络问题,检查 npm registry 或代理;重试即可,已装的不会重复装 |
