@@ -34,7 +34,7 @@
 | 插件 | 下载/周 | 说明 |
 |------|---------|------|
 | **pi-web-ui** | 6.8千 | 一键启动 Web 聊天界面,支持 Docker/systemd 部署 |
-| **@tian.zuo/pi-antigravity** | 1.5千 | 接入 Google Antigravity (agy) 模型,通过 agy stream-json RPC,以 pi 作为 UI 使用 Gemini |
+| **pi-antigravity** | — | 接入 Google Antigravity / Cloud Code Assist,自带 OAuth 登录(`/login antigravity`),不依赖外部 agy CLI |
 | **pi-markdown-preview** | 2.9千 | 渲染 Markdown + LaTeX,支持终端/浏览器/PDF 输出 |
 
 ---

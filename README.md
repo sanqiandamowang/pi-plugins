@@ -64,13 +64,13 @@ plugins:
 
 | 状态 | 插件 |
 |------|------|
-| ✅ 启用(6) | pi-subagents、pi-web-access、pi-background-tasks、@juicesharp/rpiv-todo、@juicesharp/rpiv-ask-user-question、@tian.zuo/pi-antigravity |
+| ✅ 启用(6) | pi-subagents、pi-web-access、pi-background-tasks、@juicesharp/rpiv-todo、@juicesharp/rpiv-ask-user-question、pi-antigravity |
 | ⬜ 关闭(6) | pi-lens、@narumitw/pi-plan-mode、@narumitw/pi-btw、pi-powerline-footer、pi-web-ui、pi-markdown-preview |
 
 **本机实际安装(6 个)**:与上方启用项完全一致。
 
 > ℹ️ **pi-lens 已移除**:启动开销较大(~3s LSP 探测 + jiti 编译),需要实时 LSP/linter 反馈时在 `config.yml` 中把 `enabled` 改 `true` 再跑 `sync_plugins.py`。
-> ℹ️ `pi-antigravity`(旧版)已卸载,统一用 `@tian.zuo/pi-antigravity`。
+> ℹ️ 反重力扩展已从 `@tian.zuo/pi-antigravity`(依赖外部 `agy` CLI)切换为 `pi-antigravity`(自带 OAuth `/login antigravity`,不依赖 agy);`agy` CLI 与 mise 的 `antigravity-cli` 已一并卸载。
 
 ## 同步规则
 

@@ -54,10 +54,10 @@ plugins:
     desc: "实时 LSP / linter / formatter / 类型检查反馈"
 
   # ── 🌐 集成与扩展 ────────────────────────────────
-  - name: "npm:@tian.zuo/pi-antigravity"
+  - name: "npm:pi-antigravity"
     category: "集成与扩展"
     enabled: true
-    desc: "接入 Google Antigravity (agy) 模型,Gemini 通过 stream-json RPC"
+    desc: "接入 Google Antigravity / Cloud Code Assist,自带 OAuth(/login antigravity),不依赖 agy CLI"
 
   - name: "npm:pi-web-ui"
     category: "集成与扩展"
