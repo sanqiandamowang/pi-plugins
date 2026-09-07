@@ -59,6 +59,14 @@ def load_config(path: Path) -> list[Plugin]:
     return plugins
 
 
+def resolve_pi() -> str:
+    """返回 pi 可执行文件的完整路径(Windows 上通常是 pi.cmd)。"""
+    p = shutil.which("pi")
+    if not p:
+        sys.exit("未找到 pi 命令,请先安装 pi coding agent")
+    return p
+
+
 def run(cmd: list[str]) -> str:
     """运行命令,返回 stdout。失败时抛出。"""
     proc = subprocess.run(cmd, capture_output=True, text=True)
@@ -69,12 +77,9 @@ def run(cmd: list[str]) -> str:
     return proc.stdout
 
 
-def get_installed() -> set[str]:
+def get_installed(pi_bin: str) -> set[str]:
     """从 `pi list` 输出中解析已安装的包名集合。"""
-    if not shutil.which("pi"):
-        sys.exit("未找到 pi 命令,请先安装 pi coding agent")
-
-    out = run(["pi", "list"])
+    out = run([pi_bin, "list"])
     installed: set[str] = set()
     # pi list 输出形如(缩进 2 空格):
     #   User packages:
@@ -109,19 +114,19 @@ def confirm(prompt: str, assume_yes: bool) -> bool:
             return False
 
 
-def execute(to_install: list[Plugin], to_remove: list[Plugin],
+def execute(pi_bin: str, to_install: list[Plugin], to_remove: list[Plugin],
             undeclared: list[str], purge: bool, assume_yes: bool,
             dry_run: bool):
     """实际执行安装/卸载。"""
     actions: list[tuple[str, list[str]]] = []
 
     for p in to_install:
-        actions.append(("安装", ["pi", "install", p.name]))
+        actions.append(("安装", [pi_bin, "install", p.name]))
     for p in to_remove:
-        actions.append(("卸载", ["pi", "remove", p.name]))
+        actions.append(("卸载", [pi_bin, "remove", p.name]))
     if purge and undeclared:
         for name in undeclared:
-            actions.append(("卸载(未声明)", ["pi", "remove", name]))
+            actions.append(("卸载(未声明)", [pi_bin, "remove", name]))
 
     if not actions:
         print("✅ 无需操作,已与 config.yml 一致")
@@ -164,8 +169,9 @@ def main():
     plugins = load_config(CONFIG_PATH)
     print(f"📄 已加载 config.yml:{len(plugins)} 个声明插件")
 
+    pi_bin = resolve_pi()
     print("🔍 读取 pi 已安装包...")
-    installed = get_installed()
+    installed = get_installed(pi_bin)
     print(f"   当前已安装 {len(installed)} 个:{', '.join(sorted(installed)) or '(无)'}")
 
     to_install, to_remove, undeclared = plan(plugins, installed, args.purge)
@@ -180,7 +186,7 @@ def main():
         print(f"  ⚠️ 未声明的已装包 {len(undeclared)} 个({note}):"
               + ", ".join(undeclared))
 
-    execute(to_install, to_remove, undeclared, args.purge,
+    execute(pi_bin, to_install, to_remove, undeclared, args.purge,
             args.yes, args.dry_run)
 
 
