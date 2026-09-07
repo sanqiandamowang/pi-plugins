@@ -10,3 +10,6 @@ venv/
 *.swp
 .idea/
 .vscode/
+
+# 本机私有配置(使用 config.example.yml 为模板)
+config.yml
