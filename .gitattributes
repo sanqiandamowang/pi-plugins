@@ -1,0 +1,26 @@
+# 统一行尾规范:仓库内一律存 LF,工作区按平台保留原生行尾
+#   - Windows 检出时保留 CRLF,提交时转回 LF
+#   - Linux/macOS 检出为 LF
+# 这样跨平台协作时 git diff 不会再因行尾产生整文件级噪音。
+
+# 默认:文本文件统一存 LF,检出时自动转换
+* text=auto eol=lf
+
+# 明确指定 Windows 上也强制检出为 LF 的文件(脚本类,避免 CRLF 导致问题)
+*.py  text eol=lf
+*.sh  text eol=lf
+
+# Windows 原生脚本保持 CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# 二进制文件,不做任何转换
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+*.zip  binary
+*.gz   binary
